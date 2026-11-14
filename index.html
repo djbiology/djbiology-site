@@ -522,13 +522,13 @@ ul{margin:0;padding:0;list-style:none;}
   display:grid;grid-template-columns:1fr;gap:16px;
 }
 .blend-card{
-  --tier:#B7CBDD;
+  --tier:#94AFC6;
   background:#fff;border:1px solid #E1E9F1;
   box-shadow:0 1px 2px rgba(20,45,72,.05),0 10px 24px rgba(20,45,72,.05);
   padding:0 24px 20px;
   display:flex;flex-direction:column;
 }
-.blend-card[data-tier="2"]{--tier:#6F97B8;}
+.blend-card[data-tier="2"]{--tier:#5E8CAF;}
 .blend-card[data-tier="3"]{--tier:#1B3A5C;}
 .blend-card::before{
   content:"";display:block;height:3px;background:var(--tier);
@@ -548,13 +548,18 @@ ul{margin:0;padding:0;list-style:none;}
   letter-spacing:-.01em;margin-top:14px;
 }
 .blend-stack{
-  display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:11px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 0;margin-top:11px;
 }
 .blend-stack span{
   font-size:11.5px;letter-spacing:.02em;color:#1B3A5C;
   background:#ECF2F8;padding:3px 9px 2px;border-radius:2px;
 }
 .blend-stack i{font-style:normal;font-size:11px;color:var(--muted);}
+.blend-stack span + span{position:relative;margin-left:18px;}
+.blend-stack span + span::before{
+  content:"+";position:absolute;left:-13px;top:50%;transform:translateY(-50%);
+  font-size:11px;color:var(--muted);
+}
 .blend-points{
   list-style:none;padding:0;margin:18px 0 0;flex:1 1 auto;
 }
@@ -1199,7 +1204,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
             <span class="blend-tier">Tier 01</span>
           </div>
           <h3 class="blend-name">Dual-enzyme Blend</h3>
-          <p class="blend-stack"><span>Protease</span><i>+</i><span>Lipase</span></p>
+          <p class="blend-stack"><span>Protease</span><span>Lipase</span></p>
           <ul class="blend-points">
             <li><strong>Protein &amp; lipid soils.</strong> Hydrolyses both molecular chains in the same wash stage — one pass instead of two.</li>
             <li><strong>Collar, cuff and heavy kitchen grease.</strong> Built for the oily and protein soils a single enzyme leaves behind.</li>
@@ -1214,7 +1219,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
             <span class="blend-tier">Tier 02</span>
           </div>
           <h3 class="blend-name">Triple-enzyme Blend</h3>
-          <p class="blend-stack"><span>Protease</span><i>+</i><span>Lipase</span><i>+</i><span>Cellulase</span></p>
+          <p class="blend-stack"><span>Protease</span><span>Lipase</span><span>Cellulase</span></p>
           <ul class="blend-points">
             <li><strong>Protein and lipid soils, plus fibre fuzz.</strong> A three-stage cascade that degrades grease and protein while smoothing surface fuzz.</li>
             <li><strong>Detergency with colour care.</strong> Cleaner results without the fading and pilling that harsh systems leave behind.</li>
@@ -1229,7 +1234,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
             <span class="blend-tier">Tier 03</span>
           </div>
           <h3 class="blend-name">Five-enzyme Blend</h3>
-          <p class="blend-stack"><span>Protease</span><i>+</i><span>Lipase</span><i>+</i><span>Cellulase</span><i>+</i><span>Amylase</span><i>+</i><span>Mannanase</span></p>
+          <p class="blend-stack"><span>Protease</span><span>Lipase</span><span>Cellulase</span><span>Amylase</span><span>Mannanase</span></p>
           <ul class="blend-points">
             <li><strong>Full-spectrum coverage.</strong> Proteins, lipids, starches, gums and polysaccharides in one system.</li>
             <li><strong>Mixed real-world soils.</strong> Kitchen grease, sauces, sweat and fruit residues — the stains a real wash load actually carries.</li>
