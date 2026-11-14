@@ -606,6 +606,10 @@ ul{margin:0;padding:0;list-style:none;}
   display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;
   border:1px solid var(--line);background:#fff;
 }
+/* portrait photos: keep the whole frame instead of cropping 40% off each side */
+.lab-slide.is-portrait img{
+  object-fit:contain;background:#F4F7FA;
+}
 .lab-bar{
   display:flex;align-items:center;justify-content:space-between;
   gap:16px;margin-top:14px;
@@ -1453,7 +1457,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           <img src="assets/lab-02-launder-ometer.jpg" alt="Launder-ometer used for standard detergency testing" width="1301" height="976" loading="lazy">
           <figcaption>Launder-ometer: standard detergency runs.</figcaption>
         </figure>
-        <figure class="lab-slide">
+        <figure class="lab-slide is-portrait">
           <img src="assets/lab-03-rinsing-controller.jpg" alt="Intelligent rinsing controller for wash test protocols" width="782" height="1004" loading="lazy">
           <figcaption>Intelligent rinsing controller for the rinse cycle.</figcaption>
         </figure>
@@ -1477,9 +1481,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           <img src="assets/lab-08-soiled-cloth.jpg" alt="Standard soiled cloth packs per GB/T 13174-2021" width="1269" height="808" loading="lazy">
           <figcaption>Standard soiled cloth, GB/T 13174-2021 series.</figcaption>
         </figure>
-        <figure class="lab-slide">
-          <img src="assets/lab-09-swatches.jpg" alt="Cut soiled-cloth swatches ready for a test run" width="1268" height="1691" loading="lazy">
-          <figcaption>Pre-cut test swatches.</figcaption>
+        <figure class="lab-slide is-portrait">
+          <img src="assets/lab-09-swatches.jpg" alt="Standard soiled cloth before and after stain removal" width="890" height="872" loading="lazy">
+          <figcaption>Standard soiled cloth: before and after one wash cycle.</figcaption>
         </figure>
         <figure class="lab-slide">
           <img src="assets/lab-10-reference-detergents.jpg" alt="Standard reference laundry powder, liquid detergent and dish wash" width="1269" height="997" loading="lazy">
