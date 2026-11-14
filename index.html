@@ -587,8 +587,7 @@ ul{margin:0;padding:0;list-style:none;}
 /* ---------- lab testing strip ---------- */
 .lab-wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
 .lab-track{
-  display:flex;align-items:flex-start;gap:12px;
-  height:300px;
+  display:flex;align-items:flex-start;gap:14px;
   overflow-x:auto;overflow-y:hidden;
   scroll-snap-type:x proximity;
   scroll-behavior:smooth;
@@ -596,11 +595,11 @@ ul{margin:0;padding:0;list-style:none;}
 }
 .lab-track::-webkit-scrollbar{display:none;}
 .lab-slide{
-  flex:0 0 auto;margin:0;height:100%;
+  flex:0 0 calc((100% - 14px) / 2);margin:0;
   scroll-snap-align:start;
 }
 .lab-slide img{
-  display:block;height:100%;width:auto;max-width:none;
+  display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;
   border:1px solid var(--line);background:#fff;
 }
 .lab-bar{
@@ -625,7 +624,8 @@ ul{margin:0;padding:0;list-style:none;}
 .lab-arrow:hover:not(:disabled){border-color:var(--navy);background:#F7FAFC;}
 .lab-arrow:disabled{opacity:.32;cursor:default;}
 @media(max-width:760px){
-  .lab-track{height:180px;gap:8px;}
+  .lab-track{gap:8px;}
+  .lab-slide{flex:0 0 100%;}
 }
 
 /* ---------- quality ---------- */
@@ -1429,6 +1429,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div class="lab-wrap">
       <div class="lab-track" id="labTrack">
         <figure class="lab-slide">
+          <img src="assets/lab-01-lab-door.jpg" alt="Application laboratory entrance" width="1269" height="952" loading="lazy">
+        </figure>
+        <figure class="lab-slide">
           <img src="assets/lab-02-launder-ometer.jpg" alt="Launder-ometer used for standard detergency testing" width="1301" height="976" loading="lazy">
         </figure>
         <figure class="lab-slide">
@@ -1454,9 +1457,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </figure>
         <figure class="lab-slide">
           <img src="assets/lab-10-reference-detergents.jpg" alt="Standard reference laundry powder, liquid detergent and dish wash" width="1269" height="997" loading="lazy">
-        </figure>
-        <figure class="lab-slide">
-          <img src="assets/lab-01-lab-door.jpg" alt="Application laboratory entrance" width="1269" height="952" loading="lazy">
         </figure>
       </div>
       <div class="lab-bar">
