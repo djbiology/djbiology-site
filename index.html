@@ -584,29 +584,28 @@ ul{margin:0;padding:0;list-style:none;}
   .blend-grid{grid-template-columns:repeat(3,1fr);gap:18px;}
 }
 
-/* ---------- lab testing carousel ---------- */
+/* ---------- lab testing strip ---------- */
 .lab-wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
 .lab-track{
-  display:flex;
+  display:flex;align-items:flex-start;gap:12px;
+  height:300px;
   overflow-x:auto;overflow-y:hidden;
-  scroll-snap-type:x mandatory;
+  scroll-snap-type:x proximity;
   scroll-behavior:smooth;
   scrollbar-width:none;-ms-overflow-style:none;
 }
 .lab-track::-webkit-scrollbar{display:none;}
 .lab-slide{
-  flex:0 0 100%;scroll-snap-align:start;margin:0;
+  flex:0 0 auto;margin:0;height:100%;
+  scroll-snap-align:start;
 }
 .lab-slide img{
-  display:block;width:100%;aspect-ratio:4/3;object-fit:contain;
-  border:1px solid var(--line);background:#EDF2F7;
-}
-.lab-slide figcaption{
-  margin-top:10px;font-size:12.5px;line-height:1.6;color:var(--muted);
+  display:block;height:100%;width:auto;max-width:none;
+  border:1px solid var(--line);background:#fff;
 }
 .lab-bar{
   display:flex;align-items:center;justify-content:space-between;
-  gap:16px;margin-top:16px;
+  gap:16px;margin-top:14px;
 }
 .lab-dots{display:flex;gap:7px;align-items:center;}
 .lab-dot{
@@ -625,6 +624,9 @@ ul{margin:0;padding:0;list-style:none;}
 }
 .lab-arrow:hover:not(:disabled){border-color:var(--navy);background:#F7FAFC;}
 .lab-arrow:disabled{opacity:.32;cursor:default;}
+@media(max-width:760px){
+  .lab-track{height:180px;gap:8px;}
+}
 
 /* ---------- quality ---------- */
 .quality-grid{
@@ -1428,43 +1430,33 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <div class="lab-track" id="labTrack">
         <figure class="lab-slide">
           <img src="assets/lab-02-launder-ometer.jpg" alt="Launder-ometer used for standard detergency testing" width="1301" height="976" loading="lazy">
-          <figcaption>Launder-ometer: standard detergency runs.</figcaption>
         </figure>
         <figure class="lab-slide">
           <img src="assets/lab-03-rinsing-controller.jpg" alt="Intelligent rinsing controller for wash test protocols" width="782" height="1004" loading="lazy">
-          <figcaption>Rinsing controller for the wash and rinse cycle.</figcaption>
         </figure>
         <figure class="lab-slide">
           <img src="assets/lab-04-washer.jpg" alt="Front-load washing machine used for machine-wash trials" width="1269" height="952" loading="lazy">
-          <figcaption>Machine-wash trials on a 7.5 kg drum.</figcaption>
         </figure>
         <figure class="lab-slide">
           <img src="assets/lab-05-spectro.jpg" alt="Spectrophotometer and thermostatic water bath" width="1128" height="600" loading="lazy">
-          <figcaption>Spectrophotometer and thermostatic bath for enzyme assays.</figcaption>
         </figure>
         <figure class="lab-slide">
           <img src="assets/lab-06-bench-incubator.jpg" alt="Clean bench and incubator in the laboratory" width="1212" height="603" loading="lazy">
-          <figcaption>Clean bench and incubator for activity and stability work.</figcaption>
         </figure>
         <figure class="lab-slide">
           <img src="assets/lab-07-whiteness-meter.jpg" alt="Automatic whiteness meter with standard reference tiles" width="1269" height="784" loading="lazy">
-          <figcaption>Automatic whiteness meter, calibrated against standard tiles.</figcaption>
         </figure>
         <figure class="lab-slide">
           <img src="assets/lab-08-soiled-cloth.jpg" alt="Standard soiled cloth packs per GB/T 13174-2021" width="1269" height="808" loading="lazy">
-          <figcaption>Standard soiled cloth, GB/T 13174-2021 series.</figcaption>
         </figure>
         <figure class="lab-slide">
           <img src="assets/lab-09-swatches.jpg" alt="Cut soiled-cloth swatches ready for a test run" width="1268" height="1691" loading="lazy">
-          <figcaption>Cut swatches before a test run.</figcaption>
         </figure>
         <figure class="lab-slide">
           <img src="assets/lab-10-reference-detergents.jpg" alt="Standard reference laundry powder, liquid detergent and dish wash" width="1269" height="997" loading="lazy">
-          <figcaption>Standard reference detergents used as the baseline.</figcaption>
         </figure>
         <figure class="lab-slide">
           <img src="assets/lab-01-lab-door.jpg" alt="Application laboratory entrance" width="1269" height="952" loading="lazy">
-          <figcaption>Application laboratory, Yichang.</figcaption>
         </figure>
       </div>
       <div class="lab-bar">
@@ -1749,7 +1741,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
   render();
 })();
-/* ---------- lab testing slider ---------- */
+/* ---------- lab testing strip ---------- */
 (function () {
   var track = document.getElementById('labTrack');
   if (!track) return;
@@ -1765,7 +1757,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       var d = document.createElement('button');
       d.type = 'button';
       d.className = 'lab-dot';
-      d.setAttribute('aria-label', 'Image ' + (i + 1));
+      d.setAttribute('aria-label', 'Photo ' + (i + 1));
       d.addEventListener('click', function () { go(i); });
       dotsBox.appendChild(d);
       dots.push(d);
@@ -1780,9 +1772,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     nextBtn.disabled = index === slides.length - 1;
   }
 
+  function offsetOf(el) {
+    return el.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
+  }
+
   function go(i) {
     index = Math.max(0, Math.min(slides.length - 1, i));
-    track.scrollTo({ left: index * track.clientWidth, behavior: 'smooth' });
+    track.scrollTo({ left: offsetOf(slides[index]), behavior: 'smooth' });
     paint();
   }
 
@@ -1790,17 +1786,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   track.addEventListener('scroll', function () {
     if (timer) clearTimeout(timer);
     timer = setTimeout(function () {
-      var step = track.clientWidth || 1;
-      var i = Math.round(track.scrollLeft / step);
-      if (i !== index) { index = i; paint(); }
-    }, 120);
+      var base = track.getBoundingClientRect().left;
+      var best = 0, dist = 1e9;
+      for (var n = 0; n < slides.length; n++) {
+        var l = Math.abs(slides[n].getBoundingClientRect().left - base);
+        if (l < dist) { dist = l; best = n; }
+      }
+      if (best !== index) { index = best; paint(); }
+    }, 100);
   }, { passive: true });
 
   prevBtn.addEventListener('click', function () { go(index - 1); });
   nextBtn.addEventListener('click', function () { go(index + 1); });
 
-  var startX = 0;
-  var startY = 0;
+  var startX = 0, startY = 0;
   track.addEventListener('touchstart', function (e) {
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
@@ -1819,7 +1818,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   });
 
   window.addEventListener('resize', function () {
-    track.scrollTo({ left: index * track.clientWidth, behavior: 'auto' });
+    track.scrollTo({ left: offsetOf(slides[index]), behavior: 'auto' });
   });
 
   paint();
