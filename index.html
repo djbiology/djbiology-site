@@ -1341,7 +1341,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       </div>
       <div class="app">
         <div class="app-index"><svg class="app-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16"/><circle cx="12" cy="7" r="2.1"/><circle cx="8.4" cy="13" r="2.1"/><circle cx="15.6" cy="13" r="2.1"/></svg><span>02</span></div>
-        <h3>Powder &amp; granule detergents</h3>
+        <h3>Powder &amp; solid detergents</h3>
         <div class="app-body">
           <p>Granule grades are built for spray-drying and compaction: low dust for safe handling, uniform particle size for even blending, and heat and moisture resistance through the tower.</p>
           <div class="app-grades">
@@ -1532,12 +1532,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
         <div class="field">
           <label for="f-app">Application</label>
-          <select id="f-app" name="application">
-            <option>Liquid detergent</option>
-            <option>Powder &amp; granule detergents</option>
-            <option>Institutional &amp; industrial</option>
-            <option>Private label / OEM</option>
-            <option>Not sure yet</option>
+          <select id="f-app" name="application" required>
+            <option value="" selected>Select application…</option>
+            <option>Liquid detergents</option>
+            <option>Powder &amp; solid detergents</option>
+            <option>Fabric care / Conditioning</option>
+            <option>Pre-treatment / Spot removers</option>
+            <option>Others / Custom formulation</option>
           </select>
         </div>
         <div class="field">
