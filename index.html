@@ -254,17 +254,48 @@ ul{margin:0;padding:0;list-style:none;}
   flex:0 0 100%;scroll-snap-align:start;
   border:1px solid var(--line);border-radius:2px;
   background:#fff;
-  padding:26px 28px 22px;
-  display:flex;flex-direction:column;justify-content:flex-start;
+  padding:26px 28px 24px;
+  display:flex;flex-direction:column;
 }
-.prod-card-head{margin-bottom:16px;}
-.prod-card-head h3{
+.prod-head{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:20px;flex-wrap:wrap;
+}
+.prod-title h3{
   font-family:"Space Grotesk",sans-serif;
-  font-size:17px;font-weight:600;color:var(--navy);letter-spacing:-.01em;
+  font-size:18px;font-weight:600;color:var(--navy);letter-spacing:-.01em;
 }
-.prod-soil{margin-top:3px;font-size:12px;color:var(--muted);}
-.prod-dose{margin-top:9px;font-size:12.5px;color:var(--muted-strong);}
+.prod-tag{margin-top:4px;font-size:12.5px;color:var(--muted-strong);}
+.prod-dose{
+  font-size:12.5px;color:var(--muted-strong);
+  white-space:nowrap;padding-top:3px;
+}
 .prod-dose span{color:var(--muted);margin-right:8px;}
+.prod-body{
+  display:grid;grid-template-columns:0.92fr 1.08fr;gap:40px;
+  margin-top:18px;padding-top:18px;
+  border-top:1px solid var(--line-soft);
+}
+.prod-col{min-width:0;}
+.prod-col h4{
+  font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:8px;
+}
+.prod-col h4:not(:first-child){margin-top:20px;}
+.plain-list{
+  font-size:13px;line-height:1.7;color:var(--muted-strong);
+}
+.benefit-list{list-style:none;padding:0;margin:0;}
+.benefit-list li{
+  font-size:13px;line-height:1.7;color:var(--muted-strong);
+  margin-bottom:10px;
+}
+.benefit-list li:last-child{margin-bottom:0;}
+.benefit-list strong{color:var(--navy);font-weight:600;}
+.prod-spec{
+  margin-top:20px;padding-top:18px;
+  border-top:1px solid var(--line-soft);
+}
 .grade-table{
   width:100%;border-collapse:collapse;table-layout:fixed;
   font-size:13px;
@@ -305,8 +336,12 @@ ul{margin:0;padding:0;list-style:none;}
 }
 .prod-arrow:hover:not(:disabled){border-color:var(--navy);background:#F7FAFC;}
 .prod-arrow:disabled{opacity:.32;cursor:default;}
-
+@media (max-width:900px){
+  .prod-body{grid-template-columns:1fr;gap:22px;}
+}
 @media (max-width:560px){
+  .prod-card{padding:20px 18px 18px;}
+  .prod-dose{white-space:normal;}
   .grade-table{display:block;}
   .grade-table thead{display:none;}
   .grade-table tbody{display:block;}
@@ -338,11 +373,6 @@ ul{margin:0;padding:0;list-style:none;}
     text-align:left;
   }
   .grade-table td:first-child::before{content:none;}
-}
-@media (max-width:640px){
-  .prod-card{padding:20px 18px 18px;}
-  .grade-table{font-size:12px;}
-  .grade-table th{font-size:11px;}
 }
 
 /* ---------- applications ---------- */
@@ -773,193 +803,307 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div class="prod-carousel">
       <div class="prod-track" id="prodTrack">
         <article class="prod-card">
-          <div class="prod-card-head">
-            <h3>Alkaline protease</h3>
-            <p class="prod-soil">Protein soils</p>
-            <p class="prod-dose"><span>Dosage</span>0.2 – 1.5 % w/w</p>
+          <div class="prod-head">
+            <div class="prod-title">
+              <h3>Alkaline protease</h3>
+              <p class="prod-tag">The Specialist for Stubborn Protein Stains</p>
+            </div>
+            <p class="prod-dose"><span>Recommended dosage</span>0.2 – 1.5 % w/w</p>
           </div>
-          <table class="grade-table">
-            <colgroup>
-              <col style="width:21%">
-              <col style="width:29%">
-              <col style="width:19%">
-              <col style="width:31%">
-            </colgroup>
-            <thead>
-              <tr>
-                <th scope="col">Grade</th>
-                <th scope="col">Declared activity</th>
-                <th scope="col">pH (10%, 25 °C)</th>
-                <th scope="col">Form &amp; packaging</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="num">D100L</td>
-                <td class="num" data-label="Activity">≥ 300,000 U/mL</td>
-                <td class="num" data-label="pH">5.0 – 7.0</td>
-                <td data-label="Form">Liquid · 30 kg/drum</td>
-              </tr>
-              <tr>
-                <td class="num">D80E</td>
-                <td class="num" data-label="Activity">≥ 250,000 U/g</td>
-                <td class="num" data-label="pH">7.0 – 10.0</td>
-                <td data-label="Form">Granule · 25 kg carton or ton bag</td>
-              </tr>
-              <tr>
-                <td class="num">D24E</td>
-                <td class="num" data-label="Activity">≥ 300,000 U/g</td>
-                <td class="num" data-label="pH">7.0 – 10.0</td>
-                <td data-label="Form">Granule · 25 kg carton or ton bag</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="prod-body">
+            <div class="prod-col">
+              <h4>Target stains</h4>
+              <p class="plain-list">Blood · dairy residues · egg stains · meat gravies &amp; broth · fermented soybean sauces · perspiration proteins &amp; keratin dead-skin deposits</p>
+              <h4>Applications</h4>
+              <p class="plain-list">Concentrated liquid detergents, detergent powders, laundry pods, color-safe bleaches, pre-wash spotters</p>
+            </div>
+            <div class="prod-col">
+              <h4>Key benefits</h4>
+              <ul class="benefit-list">
+                <li><strong>Superior detergency performance.</strong> Selectively catalyzes the hydrolysis of proteins into water-soluble peptides and amino acids, effectively removing stubborn proteinaceous soils such as blood, milk, sweat, and egg residues.</li>
+                <li><strong>Action on aged &amp; heat-set soils.</strong> Exhibits powerful micro-penetration and soil-lifting capabilities against aged, sun-exposed, oxidized, and heat-set protein soils that have deeply bonded with fabric fibers.</li>
+                <li><strong>Outstanding formulation stability.</strong> Highly tolerant to surfactant and chelating agent systems, maintaining robust, long-lasting biocatalytic activity across a broad temperature range and within complex detergent matrices.</li>
+                <li><strong>Gentle fiber care.</strong> Protects the natural structure of cellulosic fibers like cotton and linen without harsh chemical residues, preserving fabric softness wash after wash.</li>
+                <li><strong>Multi-enzyme synergistic system.</strong> Forms a robust catalytic synergy with amylases and lipases, effortlessly breaking down complex composite everyday soils.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="prod-spec">
+            <h4>Grades</h4>
+            <table class="grade-table">
+              <colgroup>
+                <col style="width:21%">
+                <col style="width:29%">
+                <col style="width:19%">
+                <col style="width:31%">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col">Grade</th>
+                  <th scope="col">Declared activity</th>
+                  <th scope="col">pH (10%, 25 °C)</th>
+                  <th scope="col">Form &amp; packaging</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="num">D100L</td>
+                  <td class="num" data-label="Activity">≥ 300,000 U/mL</td>
+                  <td class="num" data-label="pH">5.0 – 7.0</td>
+                  <td data-label="Form">Liquid · 30 kg/drum</td>
+                </tr>
+                <tr>
+                  <td class="num">D80E</td>
+                  <td class="num" data-label="Activity">≥ 250,000 U/g</td>
+                  <td class="num" data-label="pH">7.0 – 10.0</td>
+                  <td data-label="Form">Granule · 25 kg carton or ton bag</td>
+                </tr>
+                <tr>
+                  <td class="num">D24E</td>
+                  <td class="num" data-label="Activity">≥ 300,000 U/g</td>
+                  <td class="num" data-label="pH">7.0 – 10.0</td>
+                  <td data-label="Form">Granule · 25 kg carton or ton bag</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </article>
 
         <article class="prod-card">
-          <div class="prod-card-head">
-            <h3>Lipase</h3>
-            <p class="prod-soil">Grease &amp; sebum</p>
-            <p class="prod-dose"><span>Dosage</span>0.1 – 0.8 % w/w</p>
+          <div class="prod-head">
+            <div class="prod-title">
+              <h3>Lipase</h3>
+              <p class="prod-tag">The Specialist in Deep Grease Breakdown</p>
+            </div>
+            <p class="prod-dose"><span>Recommended dosage</span>0.1 – 0.8 % w/w</p>
           </div>
-          <table class="grade-table">
-            <colgroup>
-              <col style="width:21%">
-              <col style="width:29%">
-              <col style="width:19%">
-              <col style="width:31%">
-            </colgroup>
-            <thead>
-              <tr>
-                <th scope="col">Grade</th>
-                <th scope="col">Declared activity</th>
-                <th scope="col">pH (10%, 25 °C)</th>
-                <th scope="col">Form &amp; packaging</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="num">D-Lip88L</td>
-                <td class="num" data-label="Activity">≥ 100,000 U/mL</td>
-                <td class="num" data-label="pH">5.0 – 7.0</td>
-                <td data-label="Form">Liquid · 25 kg/drum</td>
-              </tr>
-              <tr>
-                <td class="num">D-Lip40</td>
-                <td class="num" data-label="Activity">≥ 20,000 U/g</td>
-                <td class="num" data-label="pH">7.0 – 10.0</td>
-                <td data-label="Form">Granule · 25 kg carton or ton bag</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="prod-body">
+            <div class="prod-col">
+              <h4>Target stains</h4>
+              <p class="plain-list">Edible vegetable oils (peanut / rapeseed / soybean) · animal fats &amp; frying greases · human sebum (collar &amp; cuff grime) · lipstick and oily cosmetic residues</p>
+              <h4>Applications</h4>
+              <p class="plain-list">Liquid detergents, detergent powders, laundry pods, collar &amp; cuff pre-spotters, heavy-duty fabric degreasers</p>
+            </div>
+            <div class="prod-col">
+              <h4>Key benefits</h4>
+              <ul class="benefit-list">
+                <li><strong>Deep grease &amp; lipid removal.</strong> Targeted biocatalytic breakdown of stubborn oily soils — including culinary oils, animal fats, sebum, and lipstick — delivering deep-cleaning performance at the fiber level.</li>
+                <li><strong>Cold-water performance.</strong> Retains high catalytic activity in low-temperature wash environments, significantly enhancing cold-water degreasing efficiency while minimizing washing energy consumption.</li>
+                <li><strong>Fabric protection &amp; anti-yellowing.</strong> Mild, highly selective catalysis leaves no harsh chemical residues, effectively preventing fabric yellowing and fiber embrittlement caused by residual lipid oxidation.</li>
+                <li><strong>Multi-enzyme synergy.</strong> Exhibits outstanding compatibility and synergistic effects with proteases and amylases, delivering comprehensive, all-round fabric care and cleaning solutions.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="prod-spec">
+            <h4>Grades</h4>
+            <table class="grade-table">
+              <colgroup>
+                <col style="width:21%">
+                <col style="width:29%">
+                <col style="width:19%">
+                <col style="width:31%">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col">Grade</th>
+                  <th scope="col">Declared activity</th>
+                  <th scope="col">pH (10%, 25 °C)</th>
+                  <th scope="col">Form &amp; packaging</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="num">D-Lip88L</td>
+                  <td class="num" data-label="Activity">≥ 100,000 U/mL</td>
+                  <td class="num" data-label="pH">5.0 – 7.0</td>
+                  <td data-label="Form">Liquid · 25 kg/drum</td>
+                </tr>
+                <tr>
+                  <td class="num">D-Lip40</td>
+                  <td class="num" data-label="Activity">≥ 20,000 U/g</td>
+                  <td class="num" data-label="pH">7.0 – 10.0</td>
+                  <td data-label="Form">Granule · 25 kg carton or ton bag</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </article>
 
         <article class="prod-card">
-          <div class="prod-card-head">
-            <h3>Amylase</h3>
-            <p class="prod-soil">Starch soils</p>
-            <p class="prod-dose"><span>Dosage</span>0.05 – 0.4 % w/w</p>
+          <div class="prod-head">
+            <div class="prod-title">
+              <h3>Amylase</h3>
+              <p class="prod-tag">The Starch Stain Specialist</p>
+            </div>
+            <p class="prod-dose"><span>Recommended dosage</span>0.05 – 0.4 % w/w</p>
           </div>
-          <table class="grade-table">
-            <colgroup>
-              <col style="width:21%">
-              <col style="width:29%">
-              <col style="width:19%">
-              <col style="width:31%">
-            </colgroup>
-            <thead>
-              <tr>
-                <th scope="col">Grade</th>
-                <th scope="col">Declared activity</th>
-                <th scope="col">pH (10%, 25 °C)</th>
-                <th scope="col">Form &amp; packaging</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="num">D200L</td>
-                <td class="num" data-label="Activity">≥ 400,000 U/mL (high temp)<br>≥ 20,000 U/mL (low temp)</td>
-                <td class="num" data-label="pH">5.0 – 7.0</td>
-                <td data-label="Form">Liquid · 30 kg/drum</td>
-              </tr>
-              <tr>
-                <td class="num">DM2000</td>
-                <td class="num" data-label="Activity">≥ 60,000 U/g (high temp)<br>≥ 3,000 U/g (low temp)</td>
-                <td class="num" data-label="pH">7.0 – 10.0</td>
-                <td data-label="Form">Granule · 25 kg carton or ton bag</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="prod-body">
+            <div class="prod-col">
+              <h4>Target stains</h4>
+              <p class="plain-list">Rice &amp; pasta residues · porridge &amp; congee · mashed potatoes · thickened sauces &amp; gravies · infant starch cereals</p>
+              <h4>Applications</h4>
+              <p class="plain-list">Liquid detergents, detergent powders, laundry pods, pre-wash spot removers</p>
+              <h4>Washing data</h4>
+              <p class="plain-list">On Chinese National Standard starch-soiled cloth JB05, our amylase reaches a detergency ratio of 1.65 — about 1.54× the detergency of an enzyme-free laundry powder (0.65).</p>
+            </div>
+            <div class="prod-col">
+              <h4>Key benefits</h4>
+              <ul class="benefit-list">
+                <li><strong>Targeted starch soil removal.</strong> Efficiently hydrolyzes stubborn starchy residues — rice grains, noodles, mashed potatoes, porridge, and baby food — rapidly dismantling sticky starch matrices to achieve deep cleaning at the fiber level.</li>
+                <li><strong>Breakdown of aged &amp; gelatinized matrices.</strong> Delivers outstanding penetration and soil-lifting capabilities against heat-gelatinized, dried-on, and aged starch crusts, while degrading macromolecular starches into soluble fragments to prevent soil redeposition.</li>
+                <li><strong>Low dosage &amp; high formulation compatibility.</strong> Exceptional specific catalytic activity boosts stain removal at ultra-low inclusion levels, with robust tolerance across concentrated liquids, powders, and complex detergent systems.</li>
+                <li><strong>Cold-water energy-saving catalysis.</strong> Superior catalytic activity under low-temperature wash conditions, aligning with modern cold-water wash cycles to reduce overall washing energy consumption.</li>
+                <li><strong>Multi-enzyme synergistic system.</strong> Excellent compatibility and synergy with proteases, lipases, and cellulases, comprehensively dismantling complex everyday composite soils.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="prod-spec">
+            <h4>Grades</h4>
+            <table class="grade-table">
+              <colgroup>
+                <col style="width:21%">
+                <col style="width:29%">
+                <col style="width:19%">
+                <col style="width:31%">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col">Grade</th>
+                  <th scope="col">Declared activity</th>
+                  <th scope="col">pH (10%, 25 °C)</th>
+                  <th scope="col">Form &amp; packaging</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="num">D200L</td>
+                  <td class="num" data-label="Activity">≥ 400,000 U/mL (high temp)<br>≥ 20,000 U/mL (low temp)</td>
+                  <td class="num" data-label="pH">5.0 – 7.0</td>
+                  <td data-label="Form">Liquid · 30 kg/drum</td>
+                </tr>
+                <tr>
+                  <td class="num">DM2000</td>
+                  <td class="num" data-label="Activity">≥ 60,000 U/g (high temp)<br>≥ 3,000 U/g (low temp)</td>
+                  <td class="num" data-label="pH">7.0 – 10.0</td>
+                  <td data-label="Form">Granule · 25 kg carton or ton bag</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </article>
 
         <article class="prod-card">
-          <div class="prod-card-head">
-            <h3>Cellulase</h3>
-            <p class="prod-soil">Pilling &amp; fuzz</p>
-            <p class="prod-dose"><span>Dosage</span>0.15 – 1.0 % w/w</p>
+          <div class="prod-head">
+            <div class="prod-title">
+              <h3>Cellulase</h3>
+              <p class="prod-tag">The Specialist in Fabric Renewal &amp; Biopolishing</p>
+            </div>
+            <p class="prod-dose"><span>Recommended dosage</span>0.15 – 1.0 % w/w</p>
           </div>
-          <table class="grade-table">
-            <colgroup>
-              <col style="width:21%">
-              <col style="width:29%">
-              <col style="width:19%">
-              <col style="width:31%">
-            </colgroup>
-            <thead>
-              <tr>
-                <th scope="col">Grade</th>
-                <th scope="col">Declared activity</th>
-                <th scope="col">pH (10%, 25 °C)</th>
-                <th scope="col">Form &amp; packaging</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="num">D6000L</td>
-                <td class="num" data-label="Activity">≥ 10,000 U/mL</td>
-                <td class="num" data-label="pH">4.7 – 5.2</td>
-                <td data-label="Form">Liquid · 30 kg/drum</td>
-              </tr>
-              <tr>
-                <td class="num">D6000E</td>
-                <td class="num" data-label="Activity">≥ 2,600 U/g</td>
-                <td class="num" data-label="pH">7.0 – 10.0</td>
-                <td data-label="Form">Granule · 25 kg carton or ton bag</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="prod-body">
+            <div class="prod-col">
+              <h4>Fabric care targets</h4>
+              <p class="plain-list">Surface pilling &amp; fuzz · fabric fading &amp; greying · fiber stiffness &amp; rigidity · trapped micro-particulate soils</p>
+              <h4>Applications</h4>
+              <p class="plain-list">Cotton liquid detergents, color-care laundry pods, fabric conditioners, anti-pilling pre-wash treatments</p>
+            </div>
+            <div class="prod-col">
+              <h4>Key benefits</h4>
+              <ul class="benefit-list">
+                <li><strong>Mild biopolishing &amp; color care.</strong> Gently catalyzes the selective cleavage of damaged microfibrils, delivering exceptional color retention, anti-pilling performance, and a smooth fabric surface.</li>
+                <li><strong>Deep soil release &amp; particulate removal.</strong> Completely dismantles the fuzzy microfibril network, effectively releasing and lifting deep-seated particulate soils trapped within fiber micropores.</li>
+                <li><strong>Enhanced hand-feel &amp; natural softness.</strong> Significantly improves fabric hand by reversing fiber stiffness and hardening caused by repeated washing, keeping garments naturally soft and skin-friendly.</li>
+                <li><strong>Tailored for cellulosic fabrics.</strong> Engineered specifically for cotton and cellulosic-blend laundry detergents and premium fabric conditioners, providing comprehensive fabric rejuvenation and extended garment lifespan.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="prod-spec">
+            <h4>Grades</h4>
+            <table class="grade-table">
+              <colgroup>
+                <col style="width:21%">
+                <col style="width:29%">
+                <col style="width:19%">
+                <col style="width:31%">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col">Grade</th>
+                  <th scope="col">Declared activity</th>
+                  <th scope="col">pH (10%, 25 °C)</th>
+                  <th scope="col">Form &amp; packaging</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="num">D6000L</td>
+                  <td class="num" data-label="Activity">≥ 10,000 U/mL</td>
+                  <td class="num" data-label="pH">4.7 – 5.2</td>
+                  <td data-label="Form">Liquid · 30 kg/drum</td>
+                </tr>
+                <tr>
+                  <td class="num">D6000E</td>
+                  <td class="num" data-label="Activity">≥ 2,600 U/g</td>
+                  <td class="num" data-label="pH">7.0 – 10.0</td>
+                  <td data-label="Form">Granule · 25 kg carton or ton bag</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </article>
 
         <article class="prod-card">
-          <div class="prod-card-head">
-            <h3>Mannanase</h3>
-            <p class="prod-soil">Gums &amp; redeposition</p>
-            <p class="prod-dose"><span>Dosage</span>0.03 – 0.12 % w/w</p>
+          <div class="prod-head">
+            <div class="prod-title">
+              <h3>Mannanase</h3>
+              <p class="prod-tag">The Specialist in Gum Residues &amp; Anti-Redeposition</p>
+            </div>
+            <p class="prod-dose"><span>Recommended dosage</span>0.03 – 0.12 % w/w</p>
           </div>
-          <table class="grade-table">
-            <colgroup>
-              <col style="width:21%">
-              <col style="width:29%">
-              <col style="width:19%">
-              <col style="width:31%">
-            </colgroup>
-            <thead>
-              <tr>
-                <th scope="col">Grade</th>
-                <th scope="col">Declared activity</th>
-                <th scope="col">pH (10%, 25 °C)</th>
-                <th scope="col">Form &amp; packaging</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="num">D6</td>
-                <td class="num" data-label="Activity">≥ 7,500 U/g</td>
-                <td class="num" data-label="pH">7.0 – 10.0</td>
-                <td data-label="Form">Granule · 25 kg carton or ton bag</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="prod-body">
+            <div class="prod-col">
+              <h4>Target stains</h4>
+              <p class="plain-list">Natural plant gums and colloidal thickeners (guar gum, locust bean gum) in ice cream · salad dressings · yogurt and cosmetic residues</p>
+              <h4>Applications</h4>
+              <p class="plain-list">Premium liquid detergents, anti-greying laundry pods, deep-cleaning detergent powders, multi-action pre-wash spotters</p>
+            </div>
+            <div class="prod-col">
+              <h4>Key benefits</h4>
+              <ul class="benefit-list">
+                <li><strong>Targeted hydrolysis of polysaccharide gums.</strong> Specifically cleaves natural plant gum matrices to rapidly break down viscous, colloidal stains from ice cream, dressings, and sauces.</li>
+                <li><strong>Superior anti-redeposition &amp; anti-greying.</strong> Dismantles sticky gum traps to prevent soot and soil redeposition, reducing fabric greying and dullness after repeated wash cycles.</li>
+                <li><strong>Broad formulation &amp; multi-enzyme compatibility.</strong> Outstanding stability with anionic / non-ionic surfactants and chelating agents, working in seamless synergy with protease and amylase systems.</li>
+                <li><strong>Cold-water efficiency &amp; sustainable washing.</strong> Delivers high catalytic performance at ambient and cold wash temperatures, facilitating energy savings and eco-friendly detergent formulations.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="prod-spec">
+            <h4>Grades</h4>
+            <table class="grade-table">
+              <colgroup>
+                <col style="width:21%">
+                <col style="width:29%">
+                <col style="width:19%">
+                <col style="width:31%">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col">Grade</th>
+                  <th scope="col">Declared activity</th>
+                  <th scope="col">pH (10%, 25 °C)</th>
+                  <th scope="col">Form &amp; packaging</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="num">D6</td>
+                  <td class="num" data-label="Activity">≥ 7,500 U/g</td>
+                  <td class="num" data-label="pH">7.0 – 10.0</td>
+                  <td data-label="Form">Granule · 25 kg carton or ton bag</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </article>
       </div>
       <div class="prod-bar">
@@ -970,8 +1114,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
       </div>
     </div>
-    <p class="sec-note">Specifications as published in the Dongjiao detergent enzyme brochure. Full TDS and SDS for each grade available on request.</p>
-    <p class="sec-note">Dosage expressed as % of finished formula, typical starting point. All grades: store sealed in a cool, dry place, out of direct sunlight. Liquid shelf life 12 months, granule 24 months.</p>
+    <p class="sec-note">Specifications and enzyme positioning as published in the Dongjiao detergent enzyme brochure. Full TDS and SDS for each grade available on request.</p>
+    <p class="sec-note">Dosage expressed as % of finished formula, typical starting point. All grades: store sealed in a cool, dry place, out of direct sunlight. Liquid shelf life 6–12 months, granule 24 months.</p>
     <div class="sec-head" style="margin-top:52px;">
       <h3 class="sec-title" style="font-size:20px;">Multi-enzyme blends</h3>
       <p class="sec-desc">Tiered blends, each built around a specific soil profile.</p>
