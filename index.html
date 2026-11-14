@@ -922,7 +922,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <p class="sec-desc">Follow the full production flow at our Yichang plant — from fermentation and filtration through drying, blending and finished-product packaging.</p>
     </div>
     <figure class="video-figure">
-      <video controls playsinline preload="none" poster="assets/company-video-poster.jpg" width="1920" height="1080">
+      <video controls playsinline preload="metadata" poster="assets/company-video-poster.jpg" width="1920" height="1080">
         <source src="assets/company-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -1330,7 +1330,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       </div>
       <div class="app">
         <div class="app-index"><svg class="app-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16"/><circle cx="12" cy="7" r="2.1"/><circle cx="8.4" cy="13" r="2.1"/><circle cx="15.6" cy="13" r="2.1"/></svg><span>02</span></div>
-        <h3>Powder &amp; solid detergents</h3>
+        <h3>Powder &amp; granule detergents</h3>
         <div class="app-body">
           <p>Granule grades are built for spray-drying and compaction: low dust for safe handling, uniform particle size for even blending, and heat and moisture resistance through the tower.</p>
           <div class="app-grades">
@@ -1864,6 +1864,34 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  /* pre-load the images inside the horizontal carousels.
+     Lazy loading never fires for slides that sit outside the viewport
+     horizontally, so swiping used to pull each photo cold from the network. */
+  (function () {
+    var tracks = [document.getElementById('labTrack'), document.getElementById('plantTrack')];
+    var warm = function (track) {
+      var imgs = track.querySelectorAll('img');
+      for (var i = 0; i < imgs.length; i++) {
+        var src = imgs[i].getAttribute('src');
+        if (!src) continue;
+        imgs[i].setAttribute('loading', 'eager');
+        if (!imgs[i].complete || imgs[i].naturalWidth === 0) {
+          var pre = new Image();
+          pre.src = src;
+        }
+      }
+    };
+    if (!('IntersectionObserver' in window)) { tracks.forEach(function (t) { if (t) warm(t); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        warm(entry.target);
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: '1200px 0px' });
+    tracks.forEach(function (t) { if (t) io.observe(t); });
+  })();
 </script>
 
 </body>
