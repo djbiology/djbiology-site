@@ -1898,6 +1898,29 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     }, { rootMargin: '1200px 0px' });
     tracks.forEach(function (t) { if (t) io.observe(t); });
   })();
+
+  // phones get the lighter cut of the company video
+  (function () {
+    var v = document.querySelector('#company-video video');
+    if (!v) return;
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      var s = v.querySelector('source');
+      if (s) { s.setAttribute('src', 'assets/company-video-small.mp4'); v.load(); }
+    }
+  })();
+
+  // phones get 800px-wide photos instead of the large originals
+  (function () {
+    if (!window.matchMedia('(max-width: 760px)').matches) return;
+    var imgs = document.querySelectorAll('#plantTrack img, #labTrack img');
+    for (var i = 0; i < imgs.length; i++) {
+      var src = imgs[i].getAttribute('src') || '';
+      var m = src.match(/^assets\/([A-Za-z0-9_-]+)\.jpg$/);
+      if (!m) continue;
+      imgs[i].removeAttribute('srcset');
+      imgs[i].setAttribute('src', 'assets/' + m[1] + '-800.jpg');
+    }
+  })();
 </script>
 
 </body>
